@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 /**
@@ -357,10 +356,11 @@ public typealias FadeOutAnimation = (UIView, @escaping () -> Void) -> Void
 
 // swiftlint:disable file_length
 /// Activity indicator view with nice animations
+@objc(NVActivityIndicatorView)
 public final class NVActivityIndicatorView: UIView {
     // swiftlint:disable identifier_name
     /// Default type. Default value is .BallSpinFadeLoader.
-    public static var DEFAULT_TYPE: NVActivityIndicatorType = .ballSpinFadeLoader
+    public static var DEFAULT_TYPE: NVActivityIndicatorType = .ballTrianglePath
 
     /// Default color of activity indicator. Default value is UIColor.white.
     public static var DEFAULT_COLOR = UIColor.white
@@ -472,10 +472,10 @@ public final class NVActivityIndicatorView: UIView {
 
      - returns: The activity indicator view.
      */
-    public init(frame: CGRect, type: NVActivityIndicatorType? = nil, color: UIColor? = nil, padding: CGFloat? = nil) {
-        self.type = type ?? NVActivityIndicatorView.DEFAULT_TYPE
-        self.color = color ?? NVActivityIndicatorView.DEFAULT_COLOR
-        self.padding = padding ?? NVActivityIndicatorView.DEFAULT_PADDING
+    @objc public init(frame: CGRect, color: UIColor = NVActivityIndicatorView.DEFAULT_COLOR, padding: CGFloat = NVActivityIndicatorView.DEFAULT_PADDING) {
+        self.type = NVActivityIndicatorView.DEFAULT_TYPE
+        self.color = color 
+        self.padding = padding 
         super.init(frame: frame)
         isHidden = true
     }
@@ -506,7 +506,7 @@ public final class NVActivityIndicatorView: UIView {
     /**
      Start animating.
      */
-    public final func startAnimating() {
+    @objc public final func startAnimating() {
         guard !isAnimating else {
             return
         }
@@ -519,7 +519,7 @@ public final class NVActivityIndicatorView: UIView {
     /**
      Stop animating.
      */
-    public final func stopAnimating() {
+    @objc public final func stopAnimating() {
         guard isAnimating else {
             return
         }
@@ -548,7 +548,11 @@ public final class NVActivityIndicatorView: UIView {
 
     private final func setUpAnimation() {
         let animation: NVActivityIndicatorAnimationDelegate = type.animation()
+        #if swift(>=4.2)
         var animationRect = frame.inset(by: UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+        #else
+        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+        #endif
         let minEdge = min(animationRect.width, animationRect.height)
 
         layer.sublayers = nil
@@ -556,4 +560,3 @@ public final class NVActivityIndicatorView: UIView {
         animation.setUpAnimation(in: layer, size: animationRect.size, color: color)
     }
 }
-#endif

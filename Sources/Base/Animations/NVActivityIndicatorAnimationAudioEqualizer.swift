@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationAudioEqualizer: NVActivityIndicatorAnimationDelegate {
@@ -69,4 +68,3 @@ class NVActivityIndicatorAnimationAudioEqualizer: NVActivityIndicatorAnimationDe
         }
     }
 }
-#endif

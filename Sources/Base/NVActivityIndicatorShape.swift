@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 enum NVActivityIndicatorShape {
@@ -162,4 +161,3 @@ enum NVActivityIndicatorShape {
         return layer
     }
 }
-#endif

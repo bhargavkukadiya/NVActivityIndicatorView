@@ -25,19 +25,15 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
-import NVActivityIndicatorView
 
 /**
  *  UIViewController conforms this protocol to be able to display NVActivityIndicatorView as UI blocker.
  *
  *  This extends abilities of UIViewController to display and remove UI blocker.
  */
-@available(*, deprecated, message: "")
 public protocol NVActivityIndicatorViewable {}
 
-@available(*, deprecated, message: "")
 public extension NVActivityIndicatorViewable where Self: UIViewController {
 
     /// Current status of animation, read-only.
@@ -93,4 +89,3 @@ public extension NVActivityIndicatorViewable where Self: UIViewController {
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating(fadeOutAnimation)
     }
 }
-#endif

@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationBallScale: NVActivityIndicatorAnimationDelegate {
@@ -51,7 +50,11 @@ class NVActivityIndicatorAnimationBallScale: NVActivityIndicatorAnimationDelegat
         let animation = CAAnimationGroup()
 
         animation.animations = [scaleAnimation, opacityAnimation]
+        #if swift(>=4.2)
         animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        #else
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        #endif
         animation.duration = duration
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
@@ -67,4 +70,3 @@ class NVActivityIndicatorAnimationBallScale: NVActivityIndicatorAnimationDelegat
         layer.addSublayer(circle)
     }
 }
-#endif

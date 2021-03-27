@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationTriangleSkewSpin: NVActivityIndicatorAnimationDelegate {
@@ -76,4 +75,3 @@ class NVActivityIndicatorAnimationTriangleSkewSpin: NVActivityIndicatorAnimation
         return transform
     }
 }
-#endif

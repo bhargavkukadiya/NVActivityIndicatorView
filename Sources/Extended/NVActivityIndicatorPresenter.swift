@@ -25,12 +25,9 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
-import NVActivityIndicatorView
 
 /// Class packages information used to display UI blocker.
-@available(*, deprecated, message: "")
 public final class ActivityData {
     /// Size of activity indicator view.
     let size: CGSize
@@ -178,7 +175,6 @@ private struct NVActivityIndicatorPresenterStateStopped: NVActivityIndicatorPres
 }
 
 /// Presenter that displays NVActivityIndicatorView as UI blocker.
-@available(*, deprecated, message: "")
 public final class NVActivityIndicatorPresenter {
     fileprivate enum State: NVActivityIndicatorPresenterState {
         case waitingToStart
@@ -271,10 +267,10 @@ public final class NVActivityIndicatorPresenter {
         fadeInAnimation?(containerView)
 
         let activityIndicatorView = NVActivityIndicatorView(
-            frame: CGRect(x: 0, y: 0, width: activityData.size.width, height: activityData.size.height),
-            type: activityData.type,
+            frame: CGRect(x: 0, y: 0, width: activityData.size.width, height: activityData.size.height)
+            /*type: activityData.type,
             color: activityData.color,
-            padding: activityData.padding)
+            padding: activityData.padding*/)
 
         activityIndicatorView.startAnimating()
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -336,4 +332,3 @@ public final class NVActivityIndicatorPresenter {
         }
     }
 }
-#endif

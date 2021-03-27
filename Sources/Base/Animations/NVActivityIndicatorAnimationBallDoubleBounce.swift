@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationBallDoubleBounce: NVActivityIndicatorAnimationDelegate {
@@ -43,7 +42,11 @@ class NVActivityIndicatorAnimationBallDoubleBounce: NVActivityIndicatorAnimation
         scaleAnimation.keyTimes = [0, 0.5, 1]
         scaleAnimation.values = [-1, 0, -1]
 
+        #if swift(>=4.2)
         scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        #else
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        #endif
         scaleAnimation.repeatCount = HUGE
         scaleAnimation.isRemovedOnCompletion = false
 
@@ -60,4 +63,3 @@ class NVActivityIndicatorAnimationBallDoubleBounce: NVActivityIndicatorAnimation
         layer.addSublayer(circle)
     }
 }
-#endif

@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationLineScalePulseOutRapid: NVActivityIndicatorAnimationDelegate {
@@ -65,4 +64,3 @@ class NVActivityIndicatorAnimationLineScalePulseOutRapid: NVActivityIndicatorAni
         }
     }
 }
-#endif

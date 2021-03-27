@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationCircleStrokeSpin: NVActivityIndicatorAnimationDelegate {
@@ -37,7 +36,11 @@ class NVActivityIndicatorAnimationCircleStrokeSpin: NVActivityIndicatorAnimation
 
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.byValue = Float.pi * 2
+        #if swift(>=4.2)
         rotationAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
+        #else
+        rotationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        #endif
 
         let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
         strokeEndAnimation.duration = strokeEndDuration
@@ -57,7 +60,11 @@ class NVActivityIndicatorAnimationCircleStrokeSpin: NVActivityIndicatorAnimation
         groupAnimation.duration = strokeStartDuration + beginTime
         groupAnimation.repeatCount = .infinity
         groupAnimation.isRemovedOnCompletion = false
+        #if swift(>=4.2)
         groupAnimation.fillMode = .forwards
+        #else
+        groupAnimation.fillMode = kCAFillModeForwards
+        #endif
 
         let circle = NVActivityIndicatorShape.stroke.layerWith(size: size, color: color)
         let frame = CGRect(
@@ -72,4 +79,3 @@ class NVActivityIndicatorAnimationCircleStrokeSpin: NVActivityIndicatorAnimation
         layer.addSublayer(circle)
     }
 }
-#endif

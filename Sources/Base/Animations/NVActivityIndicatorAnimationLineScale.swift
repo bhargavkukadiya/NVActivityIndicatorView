@@ -25,7 +25,6 @@
 // SOFTWARE.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 class NVActivityIndicatorAnimationLineScale: NVActivityIndicatorAnimationDelegate {
@@ -61,4 +60,3 @@ class NVActivityIndicatorAnimationLineScale: NVActivityIndicatorAnimationDelegat
         }
     }
 }
-#endif
